@@ -9,7 +9,6 @@ your code repository.
 from {{ project_name }}.settings.base import *   # pylint: disable=W0614,W0401
 
 DEBUG = True
-TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
     ('You', 'your@email'),
@@ -22,6 +21,8 @@ DATABASES = {
         'NAME': os.path.join(VAR_ROOT, 'dev.db'),
     }
 }
+
+ALLOWED_HOSTS = ('.',)
 
 # ROOT_URLCONF = '{{ project_name }}.urls.local'
 # WSGI_APPLICATION = '{{ project_name }}.wsgi.local.application'

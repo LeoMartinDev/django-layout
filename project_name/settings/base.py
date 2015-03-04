@@ -1,4 +1,5 @@
 """Base settings shared by all environments"""
+
 # Import global settings to make it easier to extend settings.
 from django.conf.global_settings import *   # pylint: disable=W0614,W0401
 
@@ -6,7 +7,6 @@ from django.conf.global_settings import *   # pylint: disable=W0614,W0401
 # Generic Django project settings
 #==============================================================================
 
-TEMPLATE_DEBUG = DEBUG
 DEBUG = False
 
 SITE_ID = 1
@@ -25,16 +25,14 @@ LANGUAGES = (
 SECRET_KEY = '{{ secret_key }}'
 
 INSTALLED_APPS = (
-    # '{{ project_name }}.apps.',
-
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-    'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
-    'django.contrib.admindocs',
+
+    # '{{ project_name }}.apps.',
 )
 
 #==============================================================================
@@ -90,18 +88,42 @@ STATICFILES_DIRS = (
 # Templates
 #==============================================================================
 
-TEMPLATE_DIRS = (
-    os.path.join(PROJECT_DIR, 'templates'),
-)
-
-TEMPLATE_CONTEXT_PROCESSORS += (
-)
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [
+            os.path.join(PROJECT_DIR, 'templates'),
+        ],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
 
 #==============================================================================
 # Middleware
 #==============================================================================
 
-MIDDLEWARE_CLASSES += (
+MIDDLEWARE_CLASSES = (
+    # Common middlewares (set by default)
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+
+    # Authentication
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
+
+    # Further security
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.security.SecurityMiddleware',
 )
 
 #==============================================================================

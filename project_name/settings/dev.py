@@ -2,7 +2,6 @@
 from {{ project_name }}.settings.base import *   # pylint: disable=W0614,W0401
 
 DEBUG = True
-TEMPLATE_DEBUG = DEBUG
 
 VAR_ROOT = '/var/www/{{ project_name }}'
 MEDIA_ROOT = os.path.join(VAR_ROOT, 'uploads')
@@ -17,4 +16,9 @@ DATABASES = {
     }
 }
 
-# WSGI_APPLICATION = '{{ project_name }}.wsgi.dev.application'
+ALLOWED_HOSTS = (
+    'example.com',
+    'www.example.com',
+)
+
+WSGI_APPLICATION = '{{ project_name }}.wsgi.dev.application'
