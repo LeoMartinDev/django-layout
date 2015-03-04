@@ -7,7 +7,7 @@ env.project_name = '{{ project_name }}'
 env.repository = 'git@github.com:lincolnloop/{{ project_name }}.git'
 env.local_branch = 'master'
 env.remote_ref = 'origin/master'
-env.requirements_file = 'requirements.pip'
+env.requirements_file = 'requirements.txt'
 env.restart_command = 'supervisorctl restart {project_name}'.format(**env)
 env.restart_sudo = True
 
