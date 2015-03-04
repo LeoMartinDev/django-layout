@@ -41,13 +41,17 @@ If you're just checking the project out locally, you can copy some example
 configuration files to get started quickly::
 
     cp {{ project_name }}/settings/local.py.example {{ project_name }}/settings/local.py
-    manage.py syncdb --migrate
+    python manage.py migrate
+
+If you want to use the Django admin create a user right here:
+
+    python manage.py createsuperuser
 
 
 Building Documentation
 ======================
 
-Documentation is available in ``docs`` and can be built into a number of 
+Documentation is available in ``docs`` and can be built into a number of
 formats using `Sphinx <http://pypi.python.org/pypi/Sphinx>`_. To get started::
 
     pip install Sphinx
