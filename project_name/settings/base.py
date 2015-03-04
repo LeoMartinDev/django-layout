@@ -6,8 +6,8 @@ from django.conf.global_settings import *   # pylint: disable=W0614,W0401
 # Generic Django project settings
 #==============================================================================
 
-DEBUG = True
 TEMPLATE_DEBUG = DEBUG
+DEBUG = False
 
 SITE_ID = 1
 # Local time zone for this installation. Choices can be found here:
